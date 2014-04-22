@@ -1,0 +1,14 @@
+{
+  "name": "gnuplot",
+  "version": "0.1.0",
+  "description": "gnuplot util",
+  "main": "gnuplot.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  }
+}
