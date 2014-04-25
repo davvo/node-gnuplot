@@ -17,3 +17,28 @@ gnuplot()
     .plot('(x/4)**2, sin(x), 1/x')
     .end()
 ```
+
+``` js
+fs.createReadStream('plot.dat')
+    .pipe(gnuplot().set('term svg'))
+    .pipe(fs.createWriteStream('out.svg'));
+```
+
+# install
+
+With [npm](https://npmjs.org) do:
+
+```
+npm install gnuplot
+```
+
+You need to have [gnuplot](http://www.gnuplot.info/) installed. On OSX you can do this with homebrew:
+
+```
+brew install gnuplot
+```
+
+
+# license
+
+MIT
