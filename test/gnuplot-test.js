@@ -2,9 +2,6 @@ var fs = require('fs'),
     gnuplot = require('../gnuplot');
 
 gnuplot()
-    .on('error', function (err) {
-        console.error(err)
-    })
     .set('term png')
     .set('title "Some Math Functions"')
     .set('xrange [-10:10]')
@@ -13,16 +10,19 @@ gnuplot()
     .plot('(x/4)**2, sin(x), 1/x')
     .pipe(fs.createWriteStream('out.png'));
 
+/*
 gnuplot()
     .set('term png')
     .set('output "out2.png"')
     .set('ticslevel 0')
-    .splot('(x**2)*(y**2)');
+    .splot('(x**2)*(y**2)')
+    .end();
 
 gnuplot()
     .set('term png')
     .plot('"force.dat" using 1:2 title "Column", "force.dat" using 1:3 title "Beam"')
-    .pipe(fs.createWriteStream('out3.png'));
+    .pipe(fs.createWriteStream('out3.png'))
+    .end();
 
 gnuplot()
     .set('term png')
@@ -59,4 +59,6 @@ gnuplot()
         'cos(x-.8)  lt 1 lc 3 title "lt 1 lc 3"',
         'cos(x-1.)  lt 3 lc 3 title "lt 3 lc 3"',
         'cos(x-1.2) lt 5 lc 3 title "lt 5 lc 3"'
-    );
+    )    
+    .end();
+*/

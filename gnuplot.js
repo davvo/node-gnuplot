@@ -1,66 +1,20 @@
-var fs = require('fs'),
-    util = require('util'),
-    spawn = require('child_process').spawn,
-    exec = require('child_process').exec,
-    EventEmitter = require('events').EventEmitter;
+var run = require('comandante'),
+    fs = require('fs');
 
-var GnuPlot = function (options) {
-    EventEmitter.call(this);
-    this.commands = [];
-    this.options = options || {};
-}
-
-util.inherits(GnuPlot, EventEmitter);
-
-GnuPlot.prototype._cmd = function (name, args) {
-    Array.prototype.slice.call(args).forEach(function (arg) {
-        this.commands.push(name + ' ' + arg);
-    }, this);
+function write(name, str, options) {
+    this.write(name + ' ' + str + '\n');
+    if (options && options.end) {
+        this.end();
+    }
     return this;
 }
 
-GnuPlot.prototype._plot = function (name, args) {
-    var self = this;
-    var gnuplot = spawn('gnuplot');
-
-    gnuplot.on('exit', function (code) {
-        if (code !== 0) {
-            self.emit('error', new Error(code));
-        }
-    });
-
-    gnuplot.on('error', function (err) {
-        self.emit('error', err);
-    });
-
-    gnuplot.stderr.pipe(process.stderr);
-
-    process.nextTick(function () {
-        self.commands.forEach(function (cmd) {
-            gnuplot.stdin.write(cmd + '\n');
-        });
-        gnuplot.stdin.end(name + ' ' + [].slice.call(args).join(', ') + '\n');
-    });
-
-    return gnuplot.stdout;
-}
-
-GnuPlot.prototype.set = function () {
-    return this._cmd('set', arguments);
-}
-
-GnuPlot.prototype.unset = function () {
-    return this._cmd('unset', arguments);
-}
-
-GnuPlot.prototype.plot = function () {
-    return this._plot('plot', arguments);
-}
-
-GnuPlot.prototype.splot = function () {
-    return this._plot('splot', arguments);
-}
-
 module.exports = function () {
-    return new GnuPlot();
+    var gnuplot = run('gnuplot', []);
+
+    ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
+        gnuplot[name] = write.bind(plot, name);
+    });
+
+    return gnuplot;
 };
