@@ -9,12 +9,12 @@ function write(name, str, options) {
     return this;
 }
 
-module.exports = function () {
-    var gnuplot = run('gnuplot', []);
+module.exports = function (options) {
+    var plot = run('gnuplot', [], options);
 
     ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
-        gnuplot[name] = write.bind(plot, name);
+        plot[name] = write.bind(plot, name);
     });
 
-    return gnuplot;
+    return plot;
 };
