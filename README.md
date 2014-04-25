@@ -1,7 +1,7 @@
 node-gnuplot
 ============
 
-A thin wrapper around gnuplot for node.js
+A super-thin wrapper around [gnuplot](http://www.gnuplot.info/) for node.js
 
 ## example
 
@@ -17,11 +17,14 @@ gnuplot()
     .plot('(x/4)**2, sin(x), 1/x')
     .end()
 ```
+You can use streams!
 
 ``` js
-fs.createReadStream('plot.dat')
-    .pipe(gnuplot().set('term svg'))
-    .pipe(fs.createWriteStream('out.svg'));
+var data = fs.createReadStream('input.dat'),
+    out = fs.createWriteStream('output.svg'),
+    plotter = gnuplot().set('term svg');
+    
+data.pipe(plotter).pipe(out);
 ```
 
 # install
@@ -32,7 +35,7 @@ With [npm](https://npmjs.org) do:
 npm install gnuplot
 ```
 
-You need to have [gnuplot](http://www.gnuplot.info/) installed. On OSX you can do this with homebrew:
+You need to have [gnuplot](http://www.gnuplot.info/) installed. On OSX you can do this with [homebrew](http://brew.sh/):
 
 ```
 brew install gnuplot
