@@ -1,5 +1,4 @@
-var run = require('comandante'),
-    fs = require('fs');
+var run = require('comandante');
 
 function write(name, str, options) {
     this.write(name + ' ' + str + '\n');
@@ -9,8 +8,8 @@ function write(name, str, options) {
     return this;
 }
 
-module.exports = function (options) {
-    var plot = run('gnuplot', [], options);
+module.exports = function () {
+    var plot = run('gnuplot', []);
 
     ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
         plot[name] = write.bind(plot, name);
