@@ -6,12 +6,27 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "davvo",
+  "license": "MIT",
   "devDependencies": {
     "mocha": "^1.18.2"
   },
   "dependencies": {
     "comandante": "0.0.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davvo/node-gnuplot.git"
+  },
+  "keywords": [
+    "gnuplot",
+    "plot"
+  ],
+  "bugs": {
+    "url": "https://github.com/davvo/node-gnuplot/issues"
+  },
+  "homepage": "https://github.com/davvo/node-gnuplot"
 }
