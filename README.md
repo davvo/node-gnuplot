@@ -45,7 +45,7 @@ gnuplot()
     .end();
 ```
 
-To automatically call end() on the inputstream after a command, pass {end: true} as the last parameter:
+To automatically call [end()](http://nodejs.org/api/stream.html#stream_writable_end_chunk_encoding_callback) on the input stream after a command, pass `{end: true}` as options:
 
 ``` js
 gnuplot()
