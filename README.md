@@ -47,6 +47,14 @@ gnuplot()
 
 To automatically call end() on the inputstream after a command, pass {end: true} as the last parameter:
 
+``` js
+gnuplot()
+    .set('term png')
+    .unset('output')
+    .plot('[-6:6] sin(x)', {end: true})
+    .pipe(fs.createWriteStream('out.png');
+```
+
 # install
 
 With [npm](https://npmjs.org) do:
