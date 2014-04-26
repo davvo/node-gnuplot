@@ -27,6 +27,26 @@ var data = fs.createReadStream('input.dat'),
 data.pipe(plotter).pipe(out);
 ```
 
+# methods
+
+``` js
+var gnuplot = require('gnuplot')
+```
+
+## gnuplot()
+
+Spawn a new gnuplot process and return a duplex stream combining `stdout` and `stdin`. In addition to the standard stream functions and events, the following syntactic sugar exists: `set`, `unset`, `plot`, `splot`. They all return the gnuplot object and therefor can be chained together:
+
+``` js
+gnuplot()
+    .set('term png')
+    .unset('output')
+    .plot('[-6:6] sin(x)')
+    .end();
+```
+
+To automatically call end() on the inputstream after a command, pass {end: true} as the last parameter:
+
 # install
 
 With [npm](https://npmjs.org) do:
