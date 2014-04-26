@@ -15,7 +15,7 @@ gnuplot()
     .set('yrange [-2:2]')
     .set('zeroaxis')
     .plot('(x/4)**2, sin(x), 1/x')
-    .end()
+    .end();
 ```
 You can use streams!
 
