@@ -1,18 +1,20 @@
 var run = require('comandante');
 
-function write(name, str, options) {
-    this.write(name + ' ' + str + '\n');
-    if (options && options.end) {
-        this.end();
-    }
-    return this;
-}
-
 module.exports = function () {
     var plot = run('gnuplot', []);
 
+    plot.print = function (data, options) {
+        plot.write(data);
+        if (options && options.end) {
+            plot.end();
+        }
+        return plot;
+    };
+
     ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
-        plot[name] = write.bind(plot, name);
+        plot[name] = function (data, options) {
+            return plot.print(name + ' ' + data + '\n', options);
+        };
     });
 
     return plot;
