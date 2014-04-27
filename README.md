@@ -35,7 +35,33 @@ var gnuplot = require('gnuplot')
 
 ## gnuplot()
 
-Spawn a new gnuplot process and return a duplex stream combining `stdout` and `stdin`. In addition to the standard stream functions and events, the following syntactic sugar exists: `set`, `unset`, `plot`, `splot`. They all return the gnuplot object and therefor can be chained together:
+Spawn a new gnuplot process and return a duplex stream combining `stdout` and `stdin`. 
+
+## gnuplot.print(data, options={})
+
+Write data to stdin of the gnuplot process. If the stream should be closed after the write, pass `{end: true}` as options.
+
+## gnuplot.println(data, options={})
+
+Same as `gnuplot.print(data + '\n', options)`
+
+## gnuplot.set(data, options={})
+
+Same as `gnuplot.println('set ' + data, options)`
+
+## gnuplot.unset(data, options={})
+
+Same as `gnuplot.println('unset ' + data, options)`
+
+## gnuplot.plot(data, options={})
+
+Same as `gnuplot.println('plot ' + data, options)`
+
+## gnuplot.splot(data, options={})
+
+Same as `gnuplot.println('splot ' + data, options)`
+
+All of the above functions returns the gnuplot object and therefor can be chained together:
 
 ``` js
 gnuplot()
