@@ -11,9 +11,13 @@ module.exports = function () {
         return plot;
     };
 
+    plot.println = function (data, options) {
+        return plot.print(data + '\n', options);
+    };
+
     ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
         plot[name] = function (data, options) {
-            return plot.print(name + ' ' + data + '\n', options);
+            return plot.println(name + ' ' + data, options);
         };
     });
 
