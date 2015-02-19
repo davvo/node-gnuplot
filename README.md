@@ -78,7 +78,7 @@ gnuplot()
     .set('term png')
     .unset('output')
     .plot('[-6:6] sin(x)', {end: true})
-    .pipe(fs.createWriteStream('out.png');
+    .pipe(fs.createWriteStream('out.png'));
 ```
 
 # install
