@@ -1,6 +1,6 @@
 {
   "name": "gnuplot",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "node gnuplot wrapper",
   "main": "gnuplot.js",
   "scripts": {
