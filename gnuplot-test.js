@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    gnuplot = require('../gnuplot');
+    gnuplot = require('./gnuplot');
 
 // Simple
 gnuplot()
@@ -20,7 +20,7 @@ gnuplot()
     .pipe(fs.createWriteStream('out2.png'));
 
 // Stream input
-fs.createReadStream('force.dat')
+fs.createReadStream('./dat/force.dat')
     .pipe(gnuplot()
         .set('term svg')
         .set('output "out3.svg"')
@@ -28,7 +28,7 @@ fs.createReadStream('force.dat')
     );
 
 // More streams
-fs.createReadStream('plot.dat')
+fs.createReadStream('./dat/plot.dat')
     .pipe(gnuplot().set('term png'))
     .pipe(fs.createWriteStream('out4.png'));
 
@@ -36,5 +36,14 @@ fs.createReadStream('plot.dat')
 gnuplot()
     .set('term png')
     .set('output "out5.png"')
-    .plot('"force.dat" using 1:2 title "Column", "force.dat" using 1:3 title "Beam"')
+    .plot('"./dat/force.dat" using 1:2 title "Column", "./dat/force.dat" using 1:3 title "Beam"')
+    .end();
+
+// Replot
+gnuplot()
+    .plot('sin(x)/x')
+    .replot('sin(x)')
+    .set('term png')
+    .set('output "replot.png"')
+    .replot()
     .end();
