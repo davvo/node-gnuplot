@@ -15,9 +15,12 @@ module.exports = function () {
         return plot.print(data + '\n', options);
     };
 
-    ['set', 'unset', 'plot', 'splot'].forEach(function (name) {
+    ['set', 'unset', 'plot', 'splot', 'replot'].forEach(function (name) {
         plot[name] = function (data, options) {
-            return plot.println(name + ' ' + data, options);
+            if (data) {
+                return plot.println(name + ' ' + data, options);                
+            }
+            return plot.println(name, options);                
         };
     });
 

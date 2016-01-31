@@ -61,7 +61,11 @@ Same as `gnuplot.println('plot ' + data, options)`
 
 Same as `gnuplot.println('splot ' + data, options)`
 
-All of the above functions returns the gnuplot object and therefor can be chained together:
+## gnuplot.replot(data='', options={})
+
+Same as `gnuplot.println('replot ' + data, options)`
+
+All of the above functions returns the gnuplot object and can be chained together:
 
 ``` js
 gnuplot()
@@ -98,4 +102,4 @@ brew install gnuplot
 
 # license
 
-MIT
+ISC
