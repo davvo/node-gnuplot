@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/davvo/node-gnuplot/issues"
   },
-  "homepage": "https://github.com/davvo/node-gnuplot"
+  "homepage": "https://github.com/davvo/node-gnuplot",
+  "dependencies": {
+    "comandante": "0.0.1"
+  }
 }
